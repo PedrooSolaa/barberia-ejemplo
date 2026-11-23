@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Barbería Ejemplo · Toledo</title>
+    <meta name="description" content="Barbería en Toledo. Corte, degradado y arreglo de barba. Pide cita por WhatsApp.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Oswald:wght@500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --negro: #121212;
+            --carbon: #1c1c1c;
+            --cobre: #c08a4a;
+            --hueso: #ece6da;
+            --gris: #9a948a;
+            --linea: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--negro);
+            color: var(--hueso);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            line-height: 1.1;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .wrap {
+            max-width: 1040px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        .etiqueta {
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: .2em;
+            font-size: .8rem;
+            color: var(--cobre);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: clamp(1.9rem, 5vw, 2.6rem);
+            margin-bottom: 28px;
+        }
+
+        /* Cabecera */
+        header .wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 6px 24px;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: .12em;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2px 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            font-size: .85rem;
+            color: var(--gris);
+            padding: 8px 0;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+        }
+
+        nav a:hover {
+            color: var(--cobre);
+        }
+
+        /* Portada */
+        .portada {
+            display: grid;
+            gap: 32px;
+            align-items: center;
+            padding-top: 24px;
+            padding-bottom: 24px;
+        }
+
+        .portada>* {
+            min-width: 0;
+        }
+
+        .portada h1 {
+            font-size: clamp(2.8rem, 10vw, 5.2rem);
+            margin-bottom: 18px;
+        }
+
+        .portada h1 span {
+            color: var(--cobre);
+        }
+
+        .portada p {
+            color: var(--gris);
+            max-width: 42ch;
+            margin-bottom: 28px;
+        }
+
+        .boton {
+            display: inline-block;
+            background: var(--cobre);
+            color: var(--negro);
+            padding: 15px 28px;
+            text-decoration: none;
+            font-family: 'Oswald', sans-serif;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            font-size: .95rem;
+        }
+
+        .boton:hover {
+            background: var(--hueso);
+        }
+
+        .boton.vacio {
+            background: none;
+            color: var(--hueso);
+            border: 1px solid var(--linea);
+            margin-left: 8px;
+        }
+
+        .boton.vacio:hover {
+            border-color: var(--cobre);
+            color: var(--cobre);
+            background: none;
+        }
+
+        .img {
+            background: #2a2622;
+            width: 100%;
+        }
+
+        .vertical {
+            aspect-ratio: 4 / 5;
+        }
+
+        .horizontal {
+            aspect-ratio: 4 / 3;
+        }
+
+        .img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Precios */
+        .lista {
+            list-style: none;
+            max-width: 680px;
+        }
+
+        .lista li {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--linea);
+        }
+
+        .lista .nombre {
+            flex: 1;
+        }
+
+        .lista strong {
+            font-weight: 500;
+            display: block;
+        }
+
+        .lista small {
+            color: var(--gris);
+        }
+
+        .lista .precio {
+            font-family: 'Oswald', sans-serif;
+            color: var(--cobre);
+            font-size: 1.3rem;
+            white-space: nowrap;
+        }
+
+        /* Galería */
+        .mosaico {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+
+        .mosaico .grande {
+            grid-column: span 2;
+            aspect-ratio: 16 / 10;
+        }
+
+        /* Equipo */
+        .equipo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 24px;
+        }
+
+        .equipo .img {
+            margin-bottom: 12px;
+        }
+
+        .equipo p {
+            color: var(--gris);
+            font-size: .9rem;
+        }
+
+        /* Banda de reserva */
+        .banda {
+            background: var(--carbon);
+            border-top: 1px solid var(--linea);
+            border-bottom: 1px solid var(--linea);
+            text-align: center;
+        }
+
+        .banda h2 {
+            margin-bottom: 12px;
+        }
+
+        .banda p {
+            color: var(--gris);
+            margin-bottom: 24px;
+        }
+
+        /* Contacto */
+        .contacto {
+            display: grid;
+            gap: 32px;
+        }
+
+        .contacto table {
+            border-collapse: collapse;
+        }
+
+        .contacto td {
+            padding: 6px 24px 6px 0;
+        }
+
+        .contacto td:first-child {
+            color: var(--gris);
+        }
+
+        footer {
+            border-top: 1px solid var(--linea);
+            padding: 24px 0 96px;
+            font-size: .85rem;
+            color: var(--gris);
+        }
+
+        .flotante {
+            position: fixed;
+            right: 18px;
+            bottom: calc(18px + env(safe-area-inset-bottom));
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #25a35a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, .4);
+        }
+
+        .flotante svg {
+            width: 26px;
+            height: 26px;
+            fill: #fff;
+        }
+
+        @media (min-width: 800px) {
+            section {
+                padding: 84px 0;
+            }
+
+            header .wrap {
+                flex-wrap: nowrap;
+            }
+
+            nav {
+                gap: 24px;
+            }
+
+            .portada {
+                grid-template-columns: 1.2fr .8fr;
+                gap: 56px;
+            }
+
+            .mosaico {
+                grid-template-columns: 2fr 1fr 1fr;
+                gap: 12px;
+            }
+
+            .mosaico .grande {
+                grid-column: auto;
+                grid-row: span 2;
+                aspect-ratio: auto;
+                min-height: 260px;
+            }
+
+            .contacto {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            html {
+                font-size: 112.5%;
+            }
+
+            .wrap {
+                max-width: 1180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="wrap">
+            <a class="logo" href="#">Barbería Ejemplo</a>
+            <nav>
+                <a href="#precios">Precios</a>
+                <a href="#trabajos">Trabajos</a>
+                <a href="#equipo">Equipo</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrap portada">
+            <div>
+                <p class="etiqueta">Barbería · Toledo</p>
+                <h1>Corte <span>limpio.</span><br>Sin prisas.</h1>
+                <p>Degradados, barba y corte clásico con cita previa. Atendemos con tiempo para que salgas como querías.
+                </p>
+                <!-- CAMBIAR: 34 + teléfono sin espacios -->
+                <a class="boton" href="https://wa.me/34600000000?text=Hola%2C%20quiero%20pedir%20cita">Pedir cita</a>
+                <a class="boton vacio" href="#precios">Ver precios</a>
+            </div>
+            <!-- CAMBIAR: <div class="img vertical"><img src="fotos/local.jpg" alt="Interior de la barbería"></div> -->
+            <div class="img vertical" role="img" aria-label="Foto del local"></div>
+        </div>
+
+        <section id="precios">
+            <div class="wrap">
+                <p class="etiqueta">Servicios</p>
+                <h2>Precios</h2>
+                <ul class="lista">
+                    <li><span class="nombre"><strong>Corte clásico</strong><small>Tijera o máquina, con
+                                lavado</small></span><span class="precio">12 €</span></li>
+                    <li><span class="nombre"><strong>Degradado</strong><small>Fade a medida, acabado con
+                                navaja</small></span><span class="precio">14 €</span></li>
+                    <li><span class="nombre"><strong>Arreglo de barba</strong><small>Perfilado y toalla
+                                caliente</small></span><span class="precio">8 €</span></li>
+                    <li><span class="nombre"><strong>Corte + barba</strong><small>El pack más pedido</small></span><span
+                            class="precio">19 €</span></li>
+                    <li><span class="nombre"><strong>Corte infantil</strong><small>Hasta 12 años</small></span><span
+                            class="precio">10 €</span></li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="trabajos" style="padding-top:0">
+            <div class="wrap">
+                <p class="etiqueta">Trabajos</p>
+                <h2>Últimos cortes</h2>
+                <!-- CAMBIAR: fotos reales de cortes, con permiso del cliente -->
+                <div class="mosaico">
+                    <div class="img grande" role="img" aria-label="Corte 1"></div>
+                    <div class="img horizontal" role="img" aria-label="Corte 2"></div>
+                    <div class="img horizontal" role="img" aria-label="Corte 3"></div>
+                    <div class="img horizontal" role="img" aria-label="Corte 4"></div>
+                    <div class="img horizontal" role="img" aria-label="Corte 5"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="equipo" style="padding-top:0">
+            <div class="wrap">
+                <p class="etiqueta">Equipo</p>
+                <h2>Quién te atiende</h2>
+                <!-- CAMBIAR: nombres, fotos y especialidad reales -->
+                <div class="equipo">
+                    <div>
+                        <div class="img vertical" role="img" aria-label="Barbero 1"></div>
+                        <h3>Carlos</h3>
+                        <p>Degradados y diseños</p>
+                    </div>
+                    <div>
+                        <div class="img vertical" role="img" aria-label="Barbero 2"></div>
+                        <h3>Miguel</h3>
+                        <p>Corte clásico y barba</p>
+                    </div>
+                    <div>
+                        <div class="img vertical" role="img" aria-label="Barbero 3"></div>
+                        <h3>David</h3>
+                        <p>Corte infantil y tijera</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="banda">
+            <div class="wrap">
+                <h2>Reserva tu hueco</h2>
+                <p>Escríbenos por WhatsApp y te confirmamos el mismo día.</p>
+                <a class="boton" href="https://wa.me/34600000000?text=Hola%2C%20quiero%20pedir%20cita">Pedir cita por
+                    WhatsApp</a>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <div class="wrap contacto">
+                <div>
+                    <p class="etiqueta">Contacto</p>
+                    <h2>Dónde estamos</h2>
+                    <!-- CAMBIAR: dirección real -->
+                    <p>C. Ejemplo, 4, Toledo</p>
+                    <!-- CAMBIAR: coordenadas o place_id del negocio (ver ejemplo anterior) -->
+                    <p style="margin-top:12px"><a href="https://www.google.com/maps/search/?api=1&query=Toledo">Cómo
+                            llegar</a></p>
+                    <p style="margin-top:12px"><a href="tel:+34600000000">Llamar: 600 00 00 00</a></p>
+                </div>
+                <div>
+                    <h3 style="margin-bottom:16px;font-size:1.3rem">Horario</h3>
+                    <table>
+                        <tr>
+                            <td>Lunes a viernes</td>
+                            <td>10:00 – 14:00 · 16:30 – 20:30</td>
+                        </tr>
+                        <tr>
+                            <td>Sábado</td>
+                            <td>10:00 – 14:30</td>
+                        </tr>
+                        <tr>
+                            <td>Domingo</td>
+                            <td>Cerrado</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="wrap">© 2026 Barbería Ejemplo · Diseño web: Pedro</div>
+    </footer>
+
+    <a class="flotante" href="https://wa.me/34600000000" aria-label="Escribir por WhatsApp">
+        <svg viewBox="0 0 24 24">
+            <path d="M4 3h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H9l-5 4V4a1 1 0 0 1 1-1z" />
+        </svg>
+    </a>
+</body>
+
+</html>
